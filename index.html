@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open HD Image</title>
+    <title>View High Resolution Image</title>
 
-    <!-- Facebook Social Media Open Graph Tags (Fixes FB Blank Image) -->
+    <!-- Facebook Social Media Open Graph Meta Tags -->
     <meta property="og:title" content="Click Here To View Full HD Image 🔞">
-    <meta property="og:description" content="Tap to unlock and view high-resolution image inside browser.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:description" content="Tap to view full resolution picture inside browser.">
+    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/arafathossainlimon11/anime-posters/1791725236276_poster.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:type" content="website">
@@ -32,7 +32,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 12px;
+            padding: 10px;
         }
 
         .card {
@@ -41,11 +41,98 @@
             background: #161b22;
             border: 1px solid #30363d;
             border-radius: 16px;
-            padding: 16px;
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8);
+            padding: 14px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85);
             position: relative;
         }
 
+        /* Top Action Button Box (Above Image) */
+        .top-action-bar {
+            width: 100%;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .top-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #1f6feb 0%, #00f2fe 100%);
+            color: #ffffff;
+            border: none;
+            padding: 14px 10px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            box-shadow: 0 0 18px rgba(0, 242, 254, 0.5);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            animation: pulseGlow 1.2s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                transform: scale(0.98);
+                box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+            }
+            100% {
+                transform: scale(1.02);
+                box-shadow: 0 0 25px rgba(0, 242, 254, 0.9), 0 0 35px rgba(31, 111, 235, 0.8);
+            }
+        }
+
+        /* Animated Arrow Sequence */
+        .arrow-seq {
+            display: inline-flex;
+            gap: 2px;
+            font-size: 16px;
+        }
+
+        .arrow-seq span {
+            animation: arrowWave 1s infinite alternate;
+        }
+
+        .arrow-seq span:nth-child(1) { animation-delay: 0.0s; }
+        .arrow-seq span:nth-child(2) { animation-delay: 0.2s; }
+        .arrow-seq span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes arrowWave {
+            0% { opacity: 0.2; transform: translateY(-2px); }
+            100% { opacity: 1; transform: translateY(2px); color: #fff; }
+        }
+
+        /* Side Animated Arrow Borders */
+        .main-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .side-arrow-bar {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 100%;
+            color: #00f2fe;
+            font-weight: bold;
+            font-size: 14px;
+            user-select: none;
+        }
+
+        .side-arrow-bar span {
+            animation: sidePulse 0.8s infinite alternate;
+        }
+
+        @keyframes sidePulse {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.3); color: #ffffff; text-shadow: 0 0 8px #00f2fe; }
+        }
+
+        /* Image Box Container */
         .image-box {
             position: relative;
             width: 100%;
@@ -53,6 +140,7 @@
             overflow: hidden;
             background: #010409;
             cursor: pointer;
+            border: 1px solid #30363d;
             min-height: 280px;
             display: flex;
             align-items: center;
@@ -64,62 +152,7 @@
             height: auto;
             max-height: 72vh;
             object-fit: contain;
-            filter: blur(14px);
-            transition: filter 0.4s ease;
             display: block;
-        }
-
-        .main-img.unblur {
-            filter: blur(0px) !important;
-        }
-
-        /* Glowing Animated Arrow Button Inside Image */
-        .open-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(11, 14, 20, 0.92);
-            border: 2px solid #00f2fe;
-            color: #00f2fe;
-            padding: 14px 22px;
-            border-radius: 50px;
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 0 20px #00f2fe, inset 0 0 10px #00f2fe;
-            animation: pulseGlow 1.4s infinite alternate;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            white-space: nowrap;
-            user-select: none;
-        }
-
-        .arrow-glow {
-            animation: arrowBounce 0.8s infinite alternate;
-            font-size: 18px;
-        }
-
-        @keyframes arrowBounce {
-            from { transform: translateX(-4px); }
-            to { transform: translateX(4px); }
-        }
-
-        @keyframes pulseGlow {
-            0% {
-                transform: translate(-50%, -50%) scale(0.96);
-                box-shadow: 0 0 10px #00f2fe;
-                border-color: #00f2fe;
-                color: #00f2fe;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1.04);
-                box-shadow: 0 0 28px #00f2fe, 0 0 40px #4facfe;
-                border-color: #ffffff;
-                color: #ffffff;
-            }
         }
 
         /* Stats & Reactions Bar */
@@ -127,7 +160,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 14px;
+            margin-top: 12px;
             padding: 10px 14px;
             background: #0d1117;
             border-radius: 10px;
@@ -143,7 +176,7 @@
             font-weight: 600;
         }
 
-        /* Love Button - Totally Free From Ads */
+        /* Love Button - Ad Safe */
         .love-btn {
             background: rgba(248, 81, 73, 0.15);
             border: 1px solid rgba(248, 81, 73, 0.4);
@@ -160,9 +193,7 @@
             user-select: none;
         }
 
-        .love-btn:active {
-            transform: scale(1.18);
-        }
+        .love-btn:active { transform: scale(1.15); }
 
         .love-btn.loved {
             background: #f85149;
@@ -170,21 +201,9 @@
             border-color: #f85149;
         }
 
-        .post-details {
-            margin-top: 12px;
-        }
-
-        .post-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #f0f6fc;
-            margin-bottom: 4px;
-        }
-
-        .post-tags {
-            font-size: 13px;
-            color: #58a6ff;
-        }
+        .post-details { margin-top: 10px; }
+        .post-title { font-size: 15px; font-weight: 600; color: #f0f6fc; margin-bottom: 4px; }
+        .post-tags { font-size: 13px; color: #58a6ff; }
 
         .loader {
             border: 4px solid #30363d;
@@ -196,17 +215,8 @@
             margin: 30px auto;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .error-msg {
-            color: #f85149;
-            text-align: center;
-            padding: 20px;
-            font-weight: 600;
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .error-msg { color: #f85149; text-align: center; padding: 20px; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -214,21 +224,38 @@
 <div class="card" id="app-card">
     <div class="loader" id="loader"></div>
     <div id="content" style="display: none;">
-        <div class="image-box" id="image-box">
-            <img id="post-img" class="main-img" src="" alt="Image">
-            <button class="open-btn" id="open-btn">
-                <span class="arrow-glow">➔</span> OPEN IMAGE <span class="arrow-glow">⬅</span>
+        
+        <!-- Top Action Button Box -->
+        <div class="top-action-bar">
+            <button class="top-btn" id="top-click-btn">
+                <div class="arrow-seq"><span>▼</span><span>▼</span><span>▼</span></div>
+                OPEN FULL HD IMAGE
+                <div class="arrow-seq"><span>▼</span><span>▼</span><span>▼</span></div>
             </button>
+        </div>
+
+        <!-- Main Image Wrapper with Side Arrows -->
+        <div class="main-wrapper">
+            <div class="side-arrow-bar">
+                <span>➤</span><span>➤</span><span>➤</span>
+            </div>
+
+            <div class="image-box" id="image-box">
+                <img id="post-img" class="main-img" src="" alt="Image">
+            </div>
+
+            <div class="side-arrow-bar">
+                <span>◀</span><span>◀</span><span>◀</span>
+            </div>
         </div>
 
         <!-- High View & Reaction Bar -->
         <div class="meta-bar">
             <div class="stat-item">
-                👁️ <span id="view-count">3.8M Views</span>
+                👁️ <span id="view-count">4.8M Views</span>
             </div>
-            <!-- Love Button (Ad Safe) -->
             <button class="love-btn" id="love-btn">
-                ❤️ <span id="love-count">142.5K</span>
+                ❤️ <span id="love-count">153.3K</span>
             </button>
         </div>
 
@@ -263,8 +290,8 @@
     const postImg = document.getElementById('post-img');
     const postTitle = document.getElementById('post-title');
     const postTags = document.getElementById('post-tags');
-    const openBtn = document.getElementById('open-btn');
     const imageBox = document.getElementById('image-box');
+    const topClickBtn = document.getElementById('top-click-btn');
     const loveBtn = document.getElementById('love-btn');
     const loveCountEl = document.getElementById('love-count');
     const viewCountEl = document.getElementById('view-count');
@@ -272,19 +299,15 @@
     // Admin Exclusion Check
     const isAdminDevice = localStorage.getItem('admin_device_active') === 'true' || urlParams.get('admin') === 'true';
 
-    // Base Fake High Stats Calculation based on Post ID
-    let baseViews = 3800000;
-    let baseLoves = 142500;
-
     if (!postId) {
         loader.style.display = 'none';
         document.getElementById('app-card').innerHTML = '<div class="error-msg">Invalid Link</div>';
     } else {
-        // Generate pseudo-unique high numbers per post
+        // Pseudo-unique high views & likes per post ID
         let charCodeSum = 0;
         for (let i = 0; i < postId.length; i++) charCodeSum += postId.charCodeAt(i);
-        baseViews = (25 + (charCodeSum % 65)) / 10 + 'M'; // e.g., 4.2M, 5.8M
-        baseLoves = Math.floor(120 + (charCodeSum % 280)) + '.' + (charCodeSum % 9) + 'K';
+        const baseViews = ((35 + (charCodeSum % 55)) / 10).toFixed(1) + 'M';
+        const baseLoves = Math.floor(110 + (charCodeSum % 250)) + '.' + (charCodeSum % 9) + 'K';
 
         viewCountEl.innerText = baseViews + ' Views';
         loveCountEl.innerText = baseLoves;
@@ -299,7 +322,6 @@
                 if (data.title) postTitle.innerText = data.title;
                 if (data.tags) postTags.innerText = data.tags;
 
-                // Track analytics only for non-admin users
                 if (!isAdminDevice) {
                     db.ref('analytics/total_views').transaction(curr => (curr || 0) + 1);
                     trackCountry();
@@ -310,25 +332,23 @@
         });
     }
 
-    // Trigger Smartlink Ad when Image or OPEN Button clicked
-    imageBox.addEventListener('click', function() {
-        postImg.classList.add('unblur');
-        openBtn.style.display = 'none';
-
+    // Trigger Smartlink Ad when Image or Top Button is clicked
+    function triggerAd() {
         if (!isAdminDevice) {
             db.ref('analytics/ad_clicks').transaction(curr => (curr || 0) + 1);
         }
-
         if (smartlinkUrl) {
             window.open(smartlinkUrl, '_blank');
         }
-    });
+    }
+
+    imageBox.addEventListener('click', triggerAd);
+    topClickBtn.addEventListener('click', triggerAd);
 
     // Love React Click (WITHOUT TRIGGERING ADS)
     let hasLoved = false;
     loveBtn.addEventListener('click', function(e) {
-        e.stopPropagation(); // Prevents Ad Trigger!
-        
+        e.stopPropagation(); // Stops Ad Trigger!
         if (!hasLoved) {
             hasLoved = true;
             loveBtn.classList.add('loved');
@@ -349,4 +369,4 @@
 </script>
 
 </body>
-    </html>
+        </html>
