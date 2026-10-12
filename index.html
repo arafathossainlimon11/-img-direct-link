@@ -7,7 +7,7 @@
 
     <!-- Facebook Social Media Open Graph Meta Tags -->
     <meta property="og:title" content="Click Here To View Full HD Image 🔞">
-    <meta property="og:description" content="Tap to view full resolution picture inside browser.">
+    <meta property="og:description" content="Tap to unlock and view full resolution picture inside browser.">
     <meta property="og:image" content="https://cdn.jsdelivr.net/gh/arafathossainlimon11/anime-posters/1791725236276_poster.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -46,7 +46,7 @@
             position: relative;
         }
 
-        /* Top Action Button Box (Above Image) */
+        /* Top Action Button Box */
         .top-action-bar {
             width: 100%;
             margin-bottom: 12px;
@@ -58,7 +58,7 @@
             background: linear-gradient(135deg, #1f6feb 0%, #00f2fe 100%);
             color: #ffffff;
             border: none;
-            padding: 14px 10px;
+            padding: 13px 10px;
             border-radius: 12px;
             font-size: 15px;
             font-weight: 800;
@@ -74,27 +74,12 @@
         }
 
         @keyframes pulseGlow {
-            0% {
-                transform: scale(0.98);
-                box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
-            }
-            100% {
-                transform: scale(1.02);
-                box-shadow: 0 0 25px rgba(0, 242, 254, 0.9), 0 0 35px rgba(31, 111, 235, 0.8);
-            }
+            0% { transform: scale(0.98); box-shadow: 0 0 10px rgba(0, 242, 254, 0.4); }
+            100% { transform: scale(1.02); box-shadow: 0 0 25px rgba(0, 242, 254, 0.9), 0 0 35px rgba(31, 111, 235, 0.8); }
         }
 
-        /* Animated Arrow Sequence */
-        .arrow-seq {
-            display: inline-flex;
-            gap: 2px;
-            font-size: 16px;
-        }
-
-        .arrow-seq span {
-            animation: arrowWave 1s infinite alternate;
-        }
-
+        .arrow-seq { display: inline-flex; gap: 2px; font-size: 15px; }
+        .arrow-seq span { animation: arrowWave 1s infinite alternate; }
         .arrow-seq span:nth-child(1) { animation-delay: 0.0s; }
         .arrow-seq span:nth-child(2) { animation-delay: 0.2s; }
         .arrow-seq span:nth-child(3) { animation-delay: 0.4s; }
@@ -123,16 +108,13 @@
             user-select: none;
         }
 
-        .side-arrow-bar span {
-            animation: sidePulse 0.8s infinite alternate;
-        }
-
+        .side-arrow-bar span { animation: sidePulse 0.8s infinite alternate; }
         @keyframes sidePulse {
             0% { opacity: 0.3; transform: scale(0.8); }
             100% { opacity: 1; transform: scale(1.3); color: #ffffff; text-shadow: 0 0 8px #00f2fe; }
         }
 
-        /* Image Box Container */
+        /* Main Image Container */
         .image-box {
             position: relative;
             width: 100%;
@@ -141,7 +123,7 @@
             background: #010409;
             cursor: pointer;
             border: 1px solid #30363d;
-            min-height: 280px;
+            min-height: 260px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -150,17 +132,83 @@
         .main-img {
             width: 100%;
             height: auto;
-            max-height: 72vh;
+            max-height: 70vh;
             object-fit: contain;
             display: block;
         }
+
+        /* Multi-Image Thumbnail Grid */
+        .grid-title {
+            margin-top: 14px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .thumbnails-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .thumb-box {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #0d1117;
+            border: 2px solid #30363d;
+            cursor: pointer;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .thumb-box:hover, .thumb-box.active {
+            border-color: #00f2fe;
+            transform: scale(1.02);
+        }
+
+        .thumb-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(8px);
+        }
+
+        .thumb-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(11, 14, 20, 0.75);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #00f2fe;
+            font-size: 11px;
+            font-weight: 800;
+            text-align: center;
+            padding: 4px;
+            gap: 4px;
+            user-select: none;
+        }
+
+        .thumb-overlay .lock-icon { font-size: 18px; }
 
         /* Stats & Reactions Bar */
         .meta-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 12px;
+            margin-top: 14px;
             padding: 10px 14px;
             background: #0d1117;
             border-radius: 10px;
@@ -176,7 +224,6 @@
             font-weight: 600;
         }
 
-        /* Love Button - Ad Safe */
         .love-btn {
             background: rgba(248, 81, 73, 0.15);
             border: 1px solid rgba(248, 81, 73, 0.4);
@@ -194,12 +241,7 @@
         }
 
         .love-btn:active { transform: scale(1.15); }
-
-        .love-btn.loved {
-            background: #f85149;
-            color: #ffffff;
-            border-color: #f85149;
-        }
+        .love-btn.loved { background: #f85149; color: #ffffff; border-color: #f85149; }
 
         .post-details { margin-top: 10px; }
         .post-title { font-size: 15px; font-weight: 600; color: #f0f6fc; margin-bottom: 4px; }
@@ -225,37 +267,41 @@
     <div class="loader" id="loader"></div>
     <div id="content" style="display: none;">
         
-        <!-- Top Action Button Box -->
+        <!-- Top Action Button -->
         <div class="top-action-bar">
             <button class="top-btn" id="top-click-btn">
                 <div class="arrow-seq"><span>▼</span><span>▼</span><span>▼</span></div>
-                OPEN FULL HD IMAGE
+                TAP TO OPEN FULL HD IMAGE
                 <div class="arrow-seq"><span>▼</span><span>▼</span><span>▼</span></div>
             </button>
         </div>
 
-        <!-- Main Image Wrapper with Side Arrows -->
+        <!-- Main Display Image -->
         <div class="main-wrapper">
-            <div class="side-arrow-bar">
-                <span>➤</span><span>➤</span><span>➤</span>
-            </div>
+            <div class="side-arrow-bar"><span>➤</span><span>➤</span><span>➤</span></div>
 
             <div class="image-box" id="image-box">
                 <img id="post-img" class="main-img" src="" alt="Image">
             </div>
 
-            <div class="side-arrow-bar">
-                <span>◀</span><span>◀</span><span>◀</span>
-            </div>
+            <div class="side-arrow-bar"><span>◀</span><span>◀</span><span>◀</span></div>
         </div>
 
-        <!-- High View & Reaction Bar -->
+        <!-- Multi-Image Gallery Thumbnails (Hidden from FB Scraper) -->
+        <div id="gallery-section" style="display: none;">
+            <div class="grid-title">
+                <span>📸</span> MORE EXCLUSIVE IMAGES (TAP TO UNLOCK):
+            </div>
+            <div class="thumbnails-grid" id="thumbnails-grid"></div>
+        </div>
+
+        <!-- Realistic View & Reaction Bar -->
         <div class="meta-bar">
             <div class="stat-item">
-                👁️ <span id="view-count">4.8M Views</span>
+                👁️ <span id="view-count">6.4K Views</span>
             </div>
             <button class="love-btn" id="love-btn">
-                ❤️ <span id="love-count">153.3K</span>
+                ❤️ <span id="love-count">2.3K</span>
             </button>
         </div>
 
@@ -281,7 +327,8 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    const smartlinkUrl = "https://www.profitableratecpmnetwork.com/cudtnzpt5?key=83b98a2a28553b6102318419c5e0eb6f";
+    // Your Updated Smartlink Ad URL
+    const smartlinkUrl = "https://www.profitableratecpmnetwork.com/vmvr72na?key=18c18b91177b0cc6a184d070742c0821";
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
 
@@ -292,25 +339,30 @@
     const postTags = document.getElementById('post-tags');
     const imageBox = document.getElementById('image-box');
     const topClickBtn = document.getElementById('top-click-btn');
+    const gallerySection = document.getElementById('gallery-section');
+    const thumbnailsGrid = document.getElementById('thumbnails-grid');
     const loveBtn = document.getElementById('love-btn');
     const loveCountEl = document.getElementById('love-count');
     const viewCountEl = document.getElementById('view-count');
 
-    // Admin Exclusion Check
+    // Admin Device Check
     const isAdminDevice = localStorage.getItem('admin_device_active') === 'true' || urlParams.get('admin') === 'true';
+
+    let allImages = [];
+    let currentImageIndex = 0;
 
     if (!postId) {
         loader.style.display = 'none';
         document.getElementById('app-card').innerHTML = '<div class="error-msg">Invalid Link</div>';
     } else {
-        // Pseudo-unique high views & likes per post ID
-        let charCodeSum = 0;
-        for (let i = 0; i < postId.length; i++) charCodeSum += postId.charCodeAt(i);
-        const baseViews = ((35 + (charCodeSum % 55)) / 10).toFixed(1) + 'M';
-        const baseLoves = Math.floor(110 + (charCodeSum % 250)) + '.' + (charCodeSum % 9) + 'K';
+        // Calculate realistic Views (5.2K - 9.8K) and Likes (1.2K - 3.8K)
+        let charSum = 0;
+        for (let i = 0; i < postId.length; i++) charSum += postId.charCodeAt(i);
+        const calcViews = ((52 + (charSum % 47)) / 10).toFixed(1) + 'K Views';
+        const calcLoves = ((12 + (charSum % 25)) / 10).toFixed(1) + 'K';
 
-        viewCountEl.innerText = baseViews + ' Views';
-        loveCountEl.innerText = baseLoves;
+        viewCountEl.innerText = calcViews;
+        loveCountEl.innerText = calcLoves;
 
         db.ref('posts/' + postId).once('value').then(snapshot => {
             const data = snapshot.val();
@@ -318,12 +370,51 @@
 
             if (data) {
                 content.style.display = 'block';
-                postImg.src = data.imageUrl;
+
+                // Collect Link 1 and additional images
+                allImages = [data.imageUrl];
+                if (data.extraImages && Array.isArray(data.extraImages)) {
+                    data.extraImages.forEach(img => {
+                        if (img && img.trim() !== '') allImages.push(img.trim());
+                    });
+                }
+
+                postImg.src = allImages[0];
                 if (data.title) postTitle.innerText = data.title;
                 if (data.tags) postTags.innerText = data.tags;
 
+                // Render Multi-Image Gallery Thumbnails if more than 1 image
+                if (allImages.length > 1) {
+                    gallerySection.style.display = 'block';
+                    thumbnailsGrid.innerHTML = '';
+
+                    allImages.forEach((imgUrl, index) => {
+                        const thumbBox = document.createElement('div');
+                        thumbBox.className = 'thumb-box' + (index === 0 ? ' active' : '');
+                        thumbBox.innerHTML = `
+                            <img src="${imgUrl}" class="thumb-img" alt="thumb">
+                            <div class="thumb-overlay">
+                                <span class="lock-icon">${index === 0 ? '👁️' : '🔒'}</span>
+                                <span>${index === 0 ? 'MAIN IMAGE' : 'UNLOCK #' + (index + 1)}</span>
+                            </div>
+                        `;
+
+                        thumbBox.addEventListener('click', function() {
+                            currentImageIndex = index;
+                            postImg.src = allImages[index];
+                            document.querySelectorAll('.thumb-box').forEach(b => b.classList.remove('active'));
+                            thumbBox.classList.add('active');
+                            triggerAd();
+                        });
+
+                        thumbnailsGrid.appendChild(thumbBox);
+                    });
+                }
+
+                // Track Real Analytics & Individual Post Views for Non-Admin Devices
                 if (!isAdminDevice) {
                     db.ref('analytics/total_views').transaction(curr => (curr || 0) + 1);
+                    db.ref('posts/' + postId + '/realViews').transaction(curr => (curr || 0) + 1);
                     trackCountry();
                 }
             } else {
@@ -332,7 +423,7 @@
         });
     }
 
-    // Trigger Smartlink Ad when Image or Top Button is clicked
+    // Trigger Smartlink Ad on image or top button click
     function triggerAd() {
         if (!isAdminDevice) {
             db.ref('analytics/ad_clicks').transaction(curr => (curr || 0) + 1);
@@ -369,4 +460,4 @@
 </script>
 
 </body>
-        </html>
+    </html>
