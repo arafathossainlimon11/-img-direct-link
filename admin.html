@@ -20,6 +20,7 @@
         .btn:hover { background: #2ea043; }
         .btn-danger { background: #da3633; }
         .btn-secondary { background: #30363d; }
+        .btn-secondary:hover { background: #484f58; }
         .btn-info { background: #1f6feb; }
 
         .dashboard { max-width: 900px; margin: 0 auto; display: none; }
@@ -34,6 +35,8 @@
         .form-group label { display: block; margin-bottom: 6px; font-size: 14px; }
         .form-group input { width: 100%; padding: 10px; background: #161b22; border: 1px solid #30363d; border-radius: 6px; color: #fff; }
 
+        .extra-img-box { display: flex; gap: 10px; margin-bottom: 10px; }
+
         table { width: 100%; border-collapse: collapse; margin-top: 10px; background: #161b22; border-radius: 8px; overflow: hidden; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #30363d; font-size: 14px; }
         th { background: #21262d; color: #f0f6fc; }
@@ -46,6 +49,7 @@
         .card h3 { font-size: 28px; color: #58a6ff; margin-top: 5px; }
 
         .device-bar { background: #1f2937; padding: 12px; border-radius: 8px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #374151; }
+        .view-badge { background: rgba(0, 242, 254, 0.15); color: #00f2fe; padding: 4px 8px; border-radius: 12px; font-weight: 700; font-size: 12px; border: 1px solid rgba(0, 242, 254, 0.3); }
     </style>
 </head>
 <body>
@@ -70,16 +74,22 @@
         <button class="tab-btn" onclick="switchTab(event, 'tab-analytics')">📊 Viewers & Analytics</button>
     </div>
 
-    <!-- Tab 1: Create Post -->
+    <!-- Tab 1: Create Post (Multi-Image Enabled) -->
     <div id="tab-create" class="tab-content active">
         <div style="background: #161b22; padding: 20px; border-radius: 8px; border: 1px solid #30363d;">
             <div class="form-group">
-                <label>Image URL (Required):</label>
-                <input type="text" id="img-url" placeholder="https://cdn.jsdelivr.net/...">
+                <label>Main Cover Image URL / Link 1 (Required for Facebook Preview):</label>
+                <input type="text" id="img-url-1" placeholder="https://cdn.jsdelivr.net/...">
             </div>
+
+            <!-- Additional Image Inputs Container -->
+            <div id="extra-images-container"></div>
+
+            <button type="button" class="btn btn-secondary" style="margin-bottom: 15px;" onclick="addMoreImageField()">➕ Add More Image Link</button>
+
             <div class="form-group">
                 <label>Title (Optional):</label>
-                <input type="text" id="img-title" placeholder="Enter title">
+                <input type="text" id="img-title" placeholder="Enter post title">
             </div>
             <div class="form-group">
                 <label>Hashtags (Optional):</label>
@@ -90,13 +100,13 @@
         </div>
     </div>
 
-    <!-- Tab 2: Manage Posts -->
+    <!-- Tab 2: Manage Posts with Real Views -->
     <div id="tab-posts" class="tab-content">
         <table>
             <thead>
                 <tr>
                     <th>Image</th>
-                    <th>Details</th>
+                    <th>Details & Real Views</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -104,7 +114,7 @@
         </table>
     </div>
 
-    <!-- Tab 3: Analytics -->
+    <!-- Tab 3: Analytics with Country Flags -->
     <div id="tab-analytics" class="tab-content">
         <div class="stat-cards">
             <div class="card">
@@ -149,6 +159,8 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
+    let extraImageCount = 1;
+
     function registerAdminPhone() {
         localStorage.setItem('admin_device_active', 'true');
         alert('This phone is registered as Admin! Your views will NOT be counted.');
@@ -174,21 +186,43 @@
         e.target.classList.add('active');
     }
 
+    function addMoreImageField() {
+        extraImageCount++;
+        const container = document.getElementById('extra-images-container');
+        const div = document.createElement('div');
+        div.className = 'form-group extra-img-box';
+        div.innerHTML = `
+            <input type="text" class="extra-img-input" placeholder="Image Link ${extraImageCount} URL">
+            <button type="button" class="btn btn-danger" onclick="this.parentElement.remove()">X</button>
+        `;
+        container.appendChild(div);
+    }
+
     function publishPost() {
-        const url = document.getElementById('img-url').value.trim();
+        const mainUrl = document.getElementById('img-url-1').value.trim();
         const title = document.getElementById('img-title').value.trim();
         const tags = document.getElementById('img-tags').value.trim();
 
-        if (!url) {
-            alert('Please enter an Image URL!');
+        if (!mainUrl) {
+            alert('Please enter Link 1 (Main Image URL)!');
             return;
         }
 
+        const extraInputs = document.querySelectorAll('.extra-img-input');
+        const extraImages = [];
+        extraInputs.forEach(input => {
+            if (input.value.trim() !== '') {
+                extraImages.push(input.value.trim());
+            }
+        });
+
         const newPostRef = db.ref('posts').push();
         newPostRef.set({
-            imageUrl: url,
+            imageUrl: mainUrl,
+            extraImages: extraImages,
             title: title,
             tags: tags,
+            realViews: 0,
             timestamp: Date.now()
         }).then(() => {
             const baseUrl = window.location.href.replace('admin.html', '');
@@ -199,9 +233,11 @@
                 <input type="text" value="${shareUrl}" id="share-link-input" style="padding:6px; width:80%; margin-top:8px;" readonly>
                 <button class="btn" style="padding:6px 12px; margin-top:5px;" onclick="copyShareLink()">Copy Link</button>
             `;
-            document.getElementById('img-url').value = '';
+            document.getElementById('img-url-1').value = '';
+            document.getElementById('extra-images-container').innerHTML = '';
             document.getElementById('img-title').value = '';
             document.getElementById('img-tags').value = '';
+            extraImageCount = 1;
         }).catch(err => {
             alert("Error: " + err.message);
         });
@@ -225,13 +261,17 @@
                 Object.keys(data).reverse().forEach(key => {
                     const post = data[key];
                     const shareUrl = `${baseUrl}?id=${key}`;
+                    const realViews = post.realViews || 0;
+                    const totalImgs = 1 + (post.extraImages ? post.extraImages.length : 0);
                     
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
                         <td><img src="${post.imageUrl}" class="thumb-img" alt="thumb"></td>
                         <td>
                             <strong>${post.title || 'No Title'}</strong><br>
-                            <small style="color:#8b949e;">${post.tags || ''}</small>
+                            <small style="color:#8b949e;">${post.tags || ''}</small><br>
+                            <span class="view-badge">👁️ Real Views: ${realViews}</span>
+                            <span style="font-size:11px; color:#8b949e; margin-left:6px;">📸 ${totalImgs} Images</span>
                         </td>
                         <td class="actions-cell">
                             <button class="btn btn-secondary" onclick="navigator.clipboard.writeText('${shareUrl}'); alert('Link Copied!');">Copy Link</button>
@@ -245,6 +285,17 @@
                 tbody.innerHTML = '<tr><td colspan="3">No posts published yet.</td></tr>';
             }
         });
+    }
+
+    function getFlagEmoji(countryName) {
+        const flags = {
+            "United States": "🇺🇸", "Bangladesh": "🇧🇩", "India": "🇮🇳",
+            "Pakistan": "🇵🇰", "United Kingdom": "🇬🇧", "Canada": "🇨🇦",
+            "Saudi Arabia": "🇸🇦", "United Arab Emirates": "🇦🇪", "Malaysia": "🇲🇾",
+            "Germany": "🇩🇪", "France": "🇫🇷", "Italy": "🇮🇹", "Brazil": "🇧🇷",
+            "Indonesia": "🇮🇩", "Philippines": "🇵🇭", "Vietnam": "🇻🇳", "Australia": "🇦🇺"
+        };
+        return flags[countryName] || "🏳️";
     }
 
     function loadAnalytics() {
@@ -263,8 +314,10 @@
 
             if (data.countries) {
                 Object.keys(data.countries).forEach(c => {
+                    const countryName = c.replace(/_/g, " ");
+                    const flag = getFlagEmoji(countryName);
                     const row = document.createElement('tr');
-                    row.innerHTML = `<td>${c.replace(/_/g, " ")}</td><td>${data.countries[c]}</td>`;
+                    row.innerHTML = `<td>${flag} ${countryName}</td><td><strong>${data.countries[c]}</strong></td>`;
                     countryTable.appendChild(row);
                 });
             } else {
@@ -275,4 +328,4 @@
 </script>
 
 </body>
-</html>
+    </html>
