@@ -74,15 +74,14 @@
         <button class="tab-btn" onclick="switchTab(event, 'tab-analytics')">📊 Viewers & Analytics</button>
     </div>
 
-    <!-- Tab 1: Create Post (Multi-Image Enabled) -->
+    <!-- Tab 1: Create Post -->
     <div id="tab-create" class="tab-content active">
         <div style="background: #161b22; padding: 20px; border-radius: 8px; border: 1px solid #30363d;">
             <div class="form-group">
-                <label>Main Cover Image URL / Link 1 (Required for Facebook Preview):</label>
+                <label>Main Cover Image URL / Link 1 (Required):</label>
                 <input type="text" id="img-url-1" placeholder="https://cdn.jsdelivr.net/...">
             </div>
 
-            <!-- Additional Image Inputs Container -->
             <div id="extra-images-container"></div>
 
             <button type="button" class="btn btn-secondary" style="margin-bottom: 15px;" onclick="addMoreImageField()">➕ Add More Image Link</button>
@@ -100,7 +99,7 @@
         </div>
     </div>
 
-    <!-- Tab 2: Manage Posts with Real Views -->
+    <!-- Tab 2: Manage Posts -->
     <div id="tab-posts" class="tab-content">
         <table>
             <thead>
@@ -114,7 +113,7 @@
         </table>
     </div>
 
-    <!-- Tab 3: Analytics with Country Flags -->
+    <!-- Tab 3: Analytics -->
     <div id="tab-analytics" class="tab-content">
         <div class="stat-cards">
             <div class="card">
@@ -292,8 +291,7 @@
             "United States": "🇺🇸", "Bangladesh": "🇧🇩", "India": "🇮🇳",
             "Pakistan": "🇵🇰", "United Kingdom": "🇬🇧", "Canada": "🇨🇦",
             "Saudi Arabia": "🇸🇦", "United Arab Emirates": "🇦🇪", "Malaysia": "🇲🇾",
-            "Germany": "🇩🇪", "France": "🇫🇷", "Italy": "🇮🇹", "Brazil": "🇧🇷",
-            "Indonesia": "🇮🇩", "Philippines": "🇵🇭", "Vietnam": "🇻🇳", "Australia": "🇦🇺"
+            "Germany": "🇩🇪", "France": "🇫🇷", "Italy": "🇮🇹", "Brazil": "🇧🇷"
         };
         return flags[countryName] || "🏳️";
     }
@@ -328,4 +326,4 @@
 </script>
 
 </body>
-</html>
+        </html>
