@@ -30,26 +30,27 @@
             color: #e6edf3;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
-            padding: 10px;
+            padding: 8px;
         }
 
         .card {
             width: 100%;
-            max-width: 480px;
+            max-width: 500px;
             background: #161b22;
             border: 1px solid #30363d;
             border-radius: 16px;
-            padding: 14px;
+            padding: 12px;
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85);
             position: relative;
+            margin: 0 auto;
         }
 
         /* Top Action Button Box */
         .top-action-bar {
             width: 100%;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             text-align: center;
         }
 
@@ -58,9 +59,9 @@
             background: linear-gradient(135deg, #1f6feb 0%, #00f2fe 100%);
             color: #ffffff;
             border: none;
-            padding: 13px 10px;
+            padding: 12px 8px;
             border-radius: 12px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 800;
             letter-spacing: 0.8px;
             text-transform: uppercase;
@@ -69,16 +70,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             animation: pulseGlow 1.2s infinite alternate;
         }
 
         @keyframes pulseGlow {
             0% { transform: scale(0.98); box-shadow: 0 0 10px rgba(0, 242, 254, 0.4); }
-            100% { transform: scale(1.02); box-shadow: 0 0 25px rgba(0, 242, 254, 0.9), 0 0 35px rgba(31, 111, 235, 0.8); }
+            100% { transform: scale(1.02); box-shadow: 0 0 25px rgba(0, 242, 254, 0.9); }
         }
 
-        .arrow-seq { display: inline-flex; gap: 2px; font-size: 15px; }
+        .arrow-seq { display: inline-flex; gap: 2px; font-size: 14px; }
         .arrow-seq span { animation: arrowWave 1s infinite alternate; }
         .arrow-seq span:nth-child(1) { animation-delay: 0.0s; }
         .arrow-seq span:nth-child(2) { animation-delay: 0.2s; }
@@ -89,12 +90,13 @@
             100% { opacity: 1; transform: translateY(2px); color: #fff; }
         }
 
-        /* Side Animated Arrow Borders */
+        /* Responsive Main Image Box */
         .main-wrapper {
             position: relative;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
+            width: 100%;
         }
 
         .side-arrow-bar {
@@ -104,17 +106,17 @@
             height: 100%;
             color: #00f2fe;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 12px;
             user-select: none;
+            padding: 0 2px;
         }
 
         .side-arrow-bar span { animation: sidePulse 0.8s infinite alternate; }
         @keyframes sidePulse {
             0% { opacity: 0.3; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.3); color: #ffffff; text-shadow: 0 0 8px #00f2fe; }
+            100% { opacity: 1; transform: scale(1.2); color: #ffffff; text-shadow: 0 0 8px #00f2fe; }
         }
 
-        /* Main Image Container */
         .image-box {
             position: relative;
             width: 100%;
@@ -123,25 +125,43 @@
             background: #010409;
             cursor: pointer;
             border: 1px solid #30363d;
-            min-height: 260px;
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 250px;
         }
 
         .main-img {
             width: 100%;
             height: auto;
-            max-height: 70vh;
+            max-height: 75vh;
             object-fit: contain;
             display: block;
         }
 
-        /* Multi-Image Thumbnail Grid */
+        /* Toast Indicator on Unlock */
+        .toast-notify {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 242, 254, 0.95);
+            color: #0d1117;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 800;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.6);
+            display: none;
+            z-index: 10;
+            white-space: nowrap;
+        }
+
+        /* Multi-Image Gallery Thumbnails */
         .grid-title {
             margin-top: 14px;
             margin-bottom: 8px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             color: #8b949e;
             text-transform: uppercase;
@@ -153,8 +173,8 @@
 
         .thumbnails-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 8px;
             margin-top: 6px;
         }
 
@@ -165,7 +185,7 @@
             background: #0d1117;
             border: 2px solid #30363d;
             cursor: pointer;
-            height: 120px;
+            height: 110px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -201,15 +221,15 @@
             user-select: none;
         }
 
-        .thumb-overlay .lock-icon { font-size: 18px; }
+        .thumb-overlay .lock-icon { font-size: 16px; }
 
-        /* Stats & Reactions Bar */
+        /* Meta Bar */
         .meta-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 14px;
-            padding: 10px 14px;
+            margin-top: 12px;
+            padding: 8px 12px;
             background: #0d1117;
             border-radius: 10px;
             border: 1px solid #21262d;
@@ -219,7 +239,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 14px;
+            font-size: 13px;
             color: #8b949e;
             font-weight: 600;
         }
@@ -228,13 +248,13 @@
             background: rgba(248, 81, 73, 0.15);
             border: 1px solid rgba(248, 81, 73, 0.4);
             color: #f85149;
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             transition: all 0.2s ease;
             user-select: none;
@@ -276,18 +296,19 @@
             </button>
         </div>
 
-        <!-- Main Display Image -->
+        <!-- Main Display Image Container -->
         <div class="main-wrapper">
             <div class="side-arrow-bar"><span>➤</span><span>➤</span><span>➤</span></div>
 
             <div class="image-box" id="image-box">
+                <div class="toast-notify" id="toast-notify">✨ Image #1 Unlocked!</div>
                 <img id="post-img" class="main-img" src="" alt="Image">
             </div>
 
             <div class="side-arrow-bar"><span>◀</span><span>◀</span><span>◀</span></div>
         </div>
 
-        <!-- Multi-Image Gallery Thumbnails (Hidden from FB Scraper) -->
+        <!-- Multi-Image Gallery Thumbnails -->
         <div id="gallery-section" style="display: none;">
             <div class="grid-title">
                 <span>📸</span> MORE EXCLUSIVE IMAGES (TAP TO UNLOCK):
@@ -295,13 +316,13 @@
             <div class="thumbnails-grid" id="thumbnails-grid"></div>
         </div>
 
-        <!-- Realistic View & Reaction Bar -->
+        <!-- Meta Stats Bar -->
         <div class="meta-bar">
             <div class="stat-item">
-                👁️ <span id="view-count">6.4K Views</span>
+                👁️ <span id="view-count">7.3K Views</span>
             </div>
             <button class="love-btn" id="love-btn">
-                ❤️ <span id="love-count">2.3K</span>
+                ❤️ <span id="love-count">2.2K</span>
             </button>
         </div>
 
@@ -327,7 +348,7 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    // Your Updated Smartlink Ad URL
+    // Smartlink Ad URL
     const smartlinkUrl = "https://www.profitableratecpmnetwork.com/vmvr72na?key=18c18b91177b0cc6a184d070742c0821";
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
@@ -344,22 +365,21 @@
     const loveBtn = document.getElementById('love-btn');
     const loveCountEl = document.getElementById('love-count');
     const viewCountEl = document.getElementById('view-count');
+    const toastNotify = document.getElementById('toast-notify');
 
-    // Admin Device Check
     const isAdminDevice = localStorage.getItem('admin_device_active') === 'true' || urlParams.get('admin') === 'true';
 
     let allImages = [];
-    let currentImageIndex = 0;
 
     if (!postId) {
         loader.style.display = 'none';
         document.getElementById('app-card').innerHTML = '<div class="error-msg">Invalid Link</div>';
     } else {
-        // Calculate realistic Views (5.2K - 9.8K) and Likes (1.2K - 3.8K)
+        // Pseudo-random view/like stats
         let charSum = 0;
         for (let i = 0; i < postId.length; i++) charSum += postId.charCodeAt(i);
-        const calcViews = ((52 + (charSum % 47)) / 10).toFixed(1) + 'K Views';
-        const calcLoves = ((12 + (charSum % 25)) / 10).toFixed(1) + 'K';
+        const calcViews = ((55 + (charSum % 40)) / 10).toFixed(1) + 'K Views';
+        const calcLoves = ((15 + (charSum % 22)) / 10).toFixed(1) + 'K';
 
         viewCountEl.innerText = calcViews;
         loveCountEl.innerText = calcLoves;
@@ -371,7 +391,6 @@
             if (data) {
                 content.style.display = 'block';
 
-                // Collect Link 1 and additional images
                 allImages = [data.imageUrl];
                 if (data.extraImages && Array.isArray(data.extraImages)) {
                     data.extraImages.forEach(img => {
@@ -383,7 +402,6 @@
                 if (data.title) postTitle.innerText = data.title;
                 if (data.tags) postTags.innerText = data.tags;
 
-                // Render Multi-Image Gallery Thumbnails if more than 1 image
                 if (allImages.length > 1) {
                     gallerySection.style.display = 'block';
                     thumbnailsGrid.innerHTML = '';
@@ -400,10 +418,14 @@
                         `;
 
                         thumbBox.addEventListener('click', function() {
-                            currentImageIndex = index;
                             postImg.src = allImages[index];
                             document.querySelectorAll('.thumb-box').forEach(b => b.classList.remove('active'));
                             thumbBox.classList.add('active');
+
+                            // Show Toast & Smooth Scroll to Top Image Box
+                            showToast(`✨ Image #${index + 1} Unlocked!`);
+                            imageBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
                             triggerAd();
                         });
 
@@ -411,7 +433,6 @@
                     });
                 }
 
-                // Track Real Analytics & Individual Post Views for Non-Admin Devices
                 if (!isAdminDevice) {
                     db.ref('analytics/total_views').transaction(curr => (curr || 0) + 1);
                     db.ref('posts/' + postId + '/realViews').transaction(curr => (curr || 0) + 1);
@@ -423,7 +444,12 @@
         });
     }
 
-    // Trigger Smartlink Ad on image or top button click
+    function showToast(text) {
+        toastNotify.innerText = text;
+        toastNotify.style.display = 'block';
+        setTimeout(() => { toastNotify.style.display = 'none'; }, 2200);
+    }
+
     function triggerAd() {
         if (!isAdminDevice) {
             db.ref('analytics/ad_clicks').transaction(curr => (curr || 0) + 1);
@@ -436,10 +462,9 @@
     imageBox.addEventListener('click', triggerAd);
     topClickBtn.addEventListener('click', triggerAd);
 
-    // Love React Click (WITHOUT TRIGGERING ADS)
     let hasLoved = false;
     loveBtn.addEventListener('click', function(e) {
-        e.stopPropagation(); // Stops Ad Trigger!
+        e.stopPropagation();
         if (!hasLoved) {
             hasLoved = true;
             loveBtn.classList.add('loved');
